@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider with Padding</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center; background-color: #f9f9f9;">
+
+    <h1 style="margin: 20px 0;">Unfavourable Spraying Conditions</h1>
+
+    <!-- Slider Box -->
+    <div style="position: relative; width: 1000px; height: 100px; margin: auto; border: 2px solid #ccc; border-radius: 100px; overflow: hidden; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); padding: 0 20px;">
+
+        <!-- Slider Track -->
+        <div id="slider-container" style="display: flex; transition: transform 0.3s ease-in-out;">
+            <!-- Generate 24 blocks -->
+            <script>
+                const hours = [
+                    { time: "12 AM", status: "✔", color: "#4caf50" },
+                    { time: "1 AM", status: "✔", color: "#4caf50" },
+                    { time: "2 AM", status: "✔", color: "#4caf50" },
+                    { time: "3 AM", status: "⚠", color: "#ff9800" },
+                    { time: "4 AM", status: "✖", color: "#f44336" },
+                    { time: "5 AM", status: "⚠", color: "#ff9800" },
+                    { time: "6 AM", status: "✔", color: "#4caf50" },
+                    { time: "7 AM", status: "✔", color: "#4caf50" },
+                    { time: "8 AM", status: "⚠", color: "#ff9800" },
+                    { time: "9 AM", status: "✖", color: "#f44336" },
+                    { time: "10 AM", status: "✖", color: "#f44336" },
+                    { time: "11 AM", status: "✔", color: "#4caf50" },
+                    { time: "12 PM", status: "⚠", color: "#ff9800" },
+                    { time: "1 PM", status: "✔", color: "#4caf50" },
+                    { time: "2 PM", status: "✔", color: "#4caf50" },
+                    { time: "3 PM", status: "⚠", color: "#ff9800" },
+                    { time: "4 PM", status: "✖", color: "#f44336" },
+                    { time: "5 PM", status: "⚠", color: "#ff9800" },
+                    { time: "6 PM", status: "✔", color: "#4caf50" },
+                    { time: "7 PM", status: "✔", color: "#4caf50" },
+                    { time: "8 PM", status: "✔", color: "#4caf50" },
+                    { time: "9 PM", status: "⚠", color: "#ff9800" },
+                    { time: "10 PM", status: "✖", color: "#f44336" },
+                    { time: "11 PM", status: "✖", color: "#f44336" }
+                ];
+                document.write(hours.map(hour => `
+                    <div style="flex: 0 0 100px; text-align: center; margin: 5px; padding: 10px; border-radius: 10px; background-color: ${hour.color}; color: white; font-weight: bold;">
+                        <div style="font-size: 20px;">${hour.status}</div>
+                        <div>${hour.time}</div>
+                    </div>
+                `).join(''));
+            </script>
+        </div>
+
+        <!-- Input Range Slider -->
+        <input type="range" id="slider" min="0" max="2400" step="100" value="0" 
+            style="width: calc(100% - 40px); position: absolute; bottom: 0; left: 20px; background: transparent;">
+    </div>
+
+    <script>
+        const slider = document.getElementById('slider');
+        const sliderContainer = document.getElementById('slider-container');
+
+        slider.addEventListener('input', (e) => {
+            const value = e.target.value; 
+            sliderContainer.style.transform = `translateX(-${value}px)`;
+        });
+    </script>
+
+</body>
+</html>

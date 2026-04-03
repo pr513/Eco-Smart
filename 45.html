@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Agropro</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="css/owl.carousel.min.css">
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+   </head>
+ <body class="main-layout inner_page service_page">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="images/loading.gif" alt="#"/></div>
+      </div>
+      <!-- end loader -->
+      <div class="full_bg">
+         <!-- header -->
+         <header class="header-area">
+            <div class="container-fluid">
+               <div class="row d_flex">
+                  <div class="col-md-2 col-sm-3">
+                     <div class="logo">
+                        <a href="index.html">Agro<span>Pro</span></a>
+                     </div>
+                  </div>
+                  <div class="col-md-8 col-sm-9">
+                     <div class="navbar-area">
+                        <nav class="site-navbar">
+                           <ul>
+                              <li><a href="index.html">Home</a></li>
+                              <li><a href="about.html">About</a></li>
+                              <li><a class="active" href="45.html">Service</a></li>
+                              <li><a href="Javascript:void(0)">Projects</a></li>
+                              <li><a href="testimonail.html">Testimonail</a></li>
+                              <li><a href="blog.html">Blog</a></li>
+                              <li><a href="contact.html">Contact</a></li>
+                           </ul>
+                           <button class="nav-toggler">
+                           <span></span>
+                           </button>
+                        </nav>
+                     </div>
+                  </div>
+                  <div class="col-md-2 padd_0 d_none">
+                     <ul class="email text_align_right">
+                        <li><a href="Javascript:void(0)">Login</a></li>
+                        <li><a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </header>
+      </div>
+      <!-- form -->
+      <div class="services">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage text_align_left">
+                     <span>Input Details</span>
+                     <h2>Nitrogen, Phosphorus, and Potassium Levels</h2>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">
+                  <form id="fertilityForm">
+                     <div class="form-group">
+                        <label for="nitrogen">Nitrogen (N) <br> Range : 90-200 <br> [kg/hectare]: </label>
+                        <input type="number" class="form-control" id="nitrogen" name="nitrogen" placeholder="Enter Nitrogen level" required style="padding: 10px; font-size: 16px; margin-bottom: 10px;">
+                     </div>
+                     <div class="form-group">
+                        <label for="phosphorus">Phosphorus (P) <br> Range : 2.05–35 <br>[kg/hectare]:</label>
+                        <input type="number" class="form-control" id="phosphorus" name="phosphorus" placeholder="Enter Phosphorus level" required style="padding: 10px; font-size: 16px; margin-bottom: 10px;">
+                     </div>
+                     <div class="form-group">
+                        <label for="potassium">Potassium (K) <br> Range : 150-600 <br>[kg/hectare]:</label>
+                        <input type="number" class="form-control" id="potassium" name="potassium" placeholder="Enter Potassium level" required style="padding: 10px; font-size: 16px; margin-bottom: 10px;">
+                     </div>
+                     <button type="button" class="btn btn-primary" onclick="suggestCrops()" style="font-size: 16px; padding: 10px 20px;">Submit</button>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Suggestions -->
+      <div class="container">
+         <div id="suggestions" class="row" style="display: none;">
+            <div class="col-md-12">
+               <h3>Recommended Crops:</h3>
+               <div id="cropList" style="font-family: Arial, sans-serif; font-size: 20px; background-color: #f9f9f9; padding: 20px; border: 2px solid #ddd; border-radius: 5px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+                  <!-- Crop suggestions will be displayed here -->
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- footer -->
+      <footer>
+         <div class="footer">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <p>© 2022 All Rights Reserved. Design by <a href="https://html.design/">Free html Templates</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- Javascript files-->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/custom.js"></script>
+
+<script>
+function suggestCrops() {
+    var nitrogen = parseFloat(document.getElementById("nitrogen").value);
+    var phosphorus = parseFloat(document.getElementById("phosphorus").value);
+    var potassium = parseFloat(document.getElementById("potassium").value);
+
+    var cropCounts = {}; // Object to store crop counts
+    var suitableCrops = [];
+    var lowLevels = []; // To store which nutrients are low
+
+    // Nitrogen (N) levels
+    if (nitrogen < 90) {
+        lowLevels.push("Nitrogen (N)");
+    } else if (nitrogen >= 90 && nitrogen <= 150) {
+        suitableCrops.push("Rice", "Wheat", "Barley");
+    } else if (nitrogen > 150 && nitrogen <= 200) {
+        suitableCrops.push("Sugarcane", "Groundnut");
+    } else if (nitrogen > 200) {
+        suitableCrops.push("Cotton", "Soybean");
+    }
+
+    // Phosphorus (P) levels
+    if (phosphorus < 2.05) {
+        lowLevels.push("Phosphorus (P)");
+    } else if (phosphorus >= 2.05 && phosphorus <= 25) {
+        suitableCrops.push("Wheat", "Rice", "Sorghum");
+    } else if (phosphorus > 25 && phosphorus <= 35) {
+        suitableCrops.push("Groundnut", "Sunflower");
+    } else if (phosphorus > 35) {
+        suitableCrops.push("Cotton", "Maize");
+    }
+
+    // Potassium (K) levels
+    if (potassium < 150) {
+        lowLevels.push("Potassium (K)");
+    } else if (potassium >= 150 && potassium <= 300) {
+        suitableCrops.push("Tomato", "Potato", "Rice");
+    } else if (potassium > 300 && potassium <= 600) {
+        suitableCrops.push("Sugarcane", "Banana");
+    } else if (potassium > 600) {
+        suitableCrops.push("Groundnut", "Soybean");
+    }
+
+    // Count the frequency of each crop
+    suitableCrops.forEach(function(crop) {
+        cropCounts[crop] = (cropCounts[crop] || 0) + 1;
+    });
+
+    // Sort crops by frequency (most repeated crops first)
+    var sortedCrops = Object.entries(cropCounts).sort(function(a, b) {
+        return b[1] - a[1]; // Sort by frequency in descending order
+    });
+
+    // Display the most recommended crops
+    var cropList = document.getElementById("cropList");
+    cropList.innerHTML = "";
+
+    if (sortedCrops.length > 0) {
+        var mostRecommendedCrops = sortedCrops.map(function(entry) {
+            return entry[0]; // Get the crop name
+        });
+
+        mostRecommendedCrops.forEach(function(crop) {
+            var li = document.createElement("li");
+            li.textContent = crop;
+            cropList.appendChild(li);
+        });
+    } else {
+        cropList.innerHTML = "No suitable crops found for the provided levels.";
+    }
+
+    // Display the low nutrient levels, if any
+    if (lowLevels.length > 0) {
+        var lowMessage = document.createElement("p");
+        lowMessage.style.color = "red";
+        lowMessage.style.marginTop = "20px";
+        lowMessage.innerHTML =
+            "The following nutrient(s) in your soil are below the recommended range: " +
+            lowLevels.join(", ") +
+            ". <a href='testimonail.html' target='_blank' style='color:blue;'>Click here</a> to learn how to increase their levels using organic fertilizers.The crop recommendations provided on this website are based on the analysis of soil nutrient levels (N, P, K) and are intended for informational purposes only. While we strive to ensure the accuracy of our recommendations, they may not account for other critical factors such as soil type, pH levels, weather conditions, pest risks, or regional agricultural practices.";
+        cropList.appendChild(lowMessage);
+           
+    }
+
+    document.getElementById("suggestions").style.display = "block";
+}
+</script>
+
+   </body>
+</html>
